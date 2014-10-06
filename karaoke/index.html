@@ -36,7 +36,7 @@
     }
 
     function isNewLyricNeeded (newTime) {
-        return true;
+        return (newTime > timesList[video.currentLyricLine]);
     }
 
     function updateLyricsHTML () {
@@ -45,7 +45,8 @@
     }
 
     function loadLyrics () {
-        lyricsLines = ["Oh, I could hide 'neath the wings", 
+        lyricsLines = ["[Instrumental Intro]",
+        "Oh, I could hide 'neath the wings", 
         "Of the bluebird as she sings.", 
         "The six o'clock alarm would never ring.",
         "But it rings and I rise,",
@@ -59,7 +60,7 @@
         "[Instrumental Break]",
         "You once thought of me",
         "As a white knight on a steed.",
-        "Now you know how happy I can be.",
+        "Now you know how happy I can be.", 
         "Oh, and our good times start and end",
         "Without dollar one to spend.",
         "But how much, baby, do we really need.",
@@ -78,6 +79,8 @@
         "To a daydream believer",
         "And a homecoming queen.",
         "[Repeat and fade]"];
+
+        timesList = [6.0, 10.5, 15.0, 21.7, 26.0, 30.0, 36.0, 37.8, 42, 44, 48, 52, 55, 59, 63, 69, 73, 78, 82, 85, 89, 92, 96, 102, 106.5, 109, 113, 119, 127, 131, 134, 137, 142];
 
     }
 
