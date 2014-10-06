@@ -14,14 +14,72 @@
 <div id="lyrics"></div>
 
 <script>
+    // an array of chronological lyrics objects, where time is the point at which
+    // those lyrics should be shown on the screen.
+    var lyricsLines = [],
+    timesList = [];
+    loadLyrics();
+    //var currentLyricLine = 0,
+    var video = document.getElementsByTagName("video")[0],
+    lyricsDiv = document.getElementById("lyrics");
+    video.currentLyricLine = 0;
 
-    function updateLyrics() {
+    video.addEventListener("timeupdate", handleTimeUpdate, false);
+
+    function handleTimeUpdate() {
         console.log("playing! " + video.currentTime);
-
+        
+        if (isNewLyricNeeded(video.currentTime)) {
+            video.currentLyricLine += 1;
+            updateLyricsHTML();
+        }
     }
 
-    var video = document.getElementsByTagName("video")[0];
-    video.addEventListener("timeupdate", updateLyrics, false);
+    function isNewLyricNeeded (newTime) {
+        return true;
+    }
+
+    function updateLyricsHTML () {
+        //update html to timesLyricsArray[2][1]
+        lyricsDiv.innerHTML = "<p>"+lyricsLines[video.currentLyricLine]+"</p>";
+    }
+
+    function loadLyrics () {
+        lyricsLines = ["Oh, I could hide 'neath the wings", 
+        "Of the bluebird as she sings.", 
+        "The six o'clock alarm would never ring.",
+        "But it rings and I rise,",
+        "Wipe the sleep out of my eyes.",
+        "My shavin' razor's cold and it stings.",
+        "[Instrumental Break]",
+        "Cheer up, Sleepy Jean.",
+        "Oh, what can it mean.",
+        "To a daydream believer",
+        "And a homecoming queen.",
+        "[Instrumental Break]",
+        "You once thought of me",
+        "As a white knight on a steed.",
+        "Now you know how happy I can be.",
+        "Oh, and our good times start and end",
+        "Without dollar one to spend.",
+        "But how much, baby, do we really need.",
+        "[Instrumental Break]",
+        "Cheer up, Sleepy Jean.",
+        "Oh, what can it mean.",
+        "To a daydream believer",
+        "And a homecoming queen.",
+        "Cheer up, Sleepy Jean.",
+        "Oh, what can it mean.",
+        "To a daydream believer",
+        "And a homecoming queen.",
+        "[Instrumental interlude]",
+        "Cheer up, Sleepy Jean.",
+        "Oh, what can it mean.",
+        "To a daydream believer",
+        "And a homecoming queen.",
+        "[Repeat and fade]"];
+
+    }
 
 
 </script>
