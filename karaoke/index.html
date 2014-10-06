@@ -14,7 +14,16 @@
 <div id="lyrics"></div>
 
 <script>
-    // Complete this section and create a CSS file named style.css
+
+    function updateLyrics() {
+        console.log("playing! " + video.currentTime);
+
+    }
+
+    var video = document.getElementsByTagName("video")[0];
+    video.addEventListener("timeupdate", updateLyrics, false);
+
+
 </script>
 </body>
 </html> 
