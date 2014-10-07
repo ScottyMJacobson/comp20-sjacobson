@@ -27,16 +27,15 @@
     video.addEventListener("timeupdate", handleTimeUpdate, false);
 
     function handleTimeUpdate() {
-        console.log("playing! " + video.currentTime);
         
-        if (isNewLyricNeeded(video.currentTime)) {
+        if (video.currentTime > timesList[video.currentLyricLine]) {
             video.currentLyricLine += 1;
             updateLyricsHTML();
         }
-    }
-
-    function isNewLyricNeeded (newTime) {
-        return (newTime > timesList[video.currentLyricLine]);
+        else if (video.currentTime < timesList[video.currentLyricLine-1]) {
+            video.currentLyricLine -= 1;
+            updateLyricsHTML();
+        }
     }
 
     function updateLyricsHTML () {
