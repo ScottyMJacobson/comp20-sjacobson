@@ -13,11 +13,32 @@
         var davisSquareCoords = new google.maps.LatLng(42.3964, -71.1223);
         var mapOptions = {
           center: davisSquareCoords,
-          zoom: 8
+          zoom: 12
         };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
+        map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(setMapCenter);
+            }
+            else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function setMapCenter(position) {
+            if (map) {
+                map.setCenter(new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude));
+            }
+        }
+
+        getLocation();
       }
+
+      
+
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 </head>
