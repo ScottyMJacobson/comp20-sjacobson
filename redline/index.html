@@ -91,7 +91,13 @@
             updateMarkers();
         }
         function updateMarkers() {
-
+            for (tripIndex in allTrips) {
+                var tempTrip = allTrips[tripIndex],
+                temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
+                                                        tempTrip.Position.Long);
+                console.log(tempTrip.TripID);
+                
+            }
         }
     }
 
