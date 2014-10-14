@@ -93,10 +93,16 @@
         function updateMarkers() {
             for (tripIndex in allTrips) {
                 var tempTrip = allTrips[tripIndex],
-                temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
+                tempTripID = tempTrip.TripID;
+                if (tempTrip.Position) {
+                    temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
                                                         tempTrip.Position.Long);
-                console.log(tempTrip.TripID);
-                
+                    var tempMarker = new google.maps.Marker({
+                        position: temp_LatLong,
+                        map: map,
+                        title: tempTripID
+                    })
+                }
             }
         }
     }
