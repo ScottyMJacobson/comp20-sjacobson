@@ -10,10 +10,11 @@
     </script>
     <script type="text/javascript">
       
-    var map; // map made global within this scope to allow other functions
+    var map, // map made global within this scope to allow other functions
             // to access it
+    redlineURI = "http://developer.mbta.com/lib/rthr/red.json"; 
 
-      function initialize() {
+    function initialize() {
         var davisSquareCoords = new google.maps.LatLng(42.3964, -71.1223);
         var mapOptions = {
           center: davisSquareCoords,
@@ -21,6 +22,8 @@
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
+        getLocation();
+        tripsUpdateCycle(redlineURI);
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -37,8 +40,8 @@
                     position.coords.longitude));
             }
         }
-        getLocation();
-      
+
+
         function handleError(error) {
             switch(error.code) {
                 case error.PERMISSION_DENIED:
@@ -56,14 +59,44 @@
             }
         }
 
-      }
+    }
 
-      google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize);
 
-      function fetchRedlineData() {
-        
-        
-      }
+    function tripsUpdateCycle () {
+        var xhr, tripList, allTrips, timeFetched;
+        fetchJSON(redlineURI);
+        function fetchJSON(API_URL) {
+            xhr = new XMLHttpRequest();
+            xhr.open("get", API_URL, true);
+            xhr.onreadystatechange = readyStateHandler;
+            xhr.send(null);
+        }
+
+        function readyStateHandler() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                tripList = JSON.parse(xhr.responseText);
+                tripListUpdated();
+            }
+            else if (xhr.readyState == 4) {
+                console.log("ERROR: xhr returned status "+ xhr.status);
+            }
+        }
+
+        function tripListUpdated() {
+            console.log("Updated Trips!");
+            console.log(tripList);
+            timeFetched = tripList.TripList.CurrentTime;
+            allTrips = tripList.TripList.Trips;
+            updateMarkers();
+        }
+        function updateMarkers() {
+
+        }
+    }
+
+
+    
 
     </script>
 </head>
