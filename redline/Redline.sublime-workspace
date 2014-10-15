@@ -1,0 +1,914 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"temp",
+				"tempTrip"
+			],
+			[
+				"Lat",
+				"LatLng"
+			],
+			[
+				"redl",
+				"redlineURI"
+			],
+			[
+				"current",
+				"CurrentTime"
+			],
+			[
+				"time",
+				"timeFetched"
+			],
+			[
+				"Red",
+				"redlineURI"
+			],
+			[
+				"read",
+				"readyStateHandler"
+			],
+			[
+				"Db_",
+				"Db_Cdr"
+			],
+			[
+				"D",
+				"Db_Cdr"
+			],
+			[
+				"Db",
+				"Db_Cdr"
+			],
+			[
+				"is",
+				"is_vampire"
+			],
+			[
+				"A",
+				"A"
+			],
+			[
+				"homeco",
+				"homecoming-queen"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"curr",
+				"currentLyricLine"
+			],
+			[
+				"ly",
+				"lyricsLines"
+			],
+			[
+				"curre",
+				"currentLyricLine"
+			],
+			[
+				"font-",
+				"font-style"
+			],
+			[
+				"l",
+				"li	Tag"
+			],
+			[
+				"file",
+				"filename_buffer"
+			],
+			[
+				"per",
+				"per_file_histograms"
+			],
+			[
+				"pop",
+				"pop_from_safe_limited_onto"
+			],
+			[
+				"word",
+				"word_histogram"
+			],
+			[
+				"return",
+				"return_value"
+			],
+			[
+				"it",
+				"items"
+			],
+			[
+				"ca",
+				"caught_values"
+			],
+			[
+				"thrad",
+				"threading"
+			],
+			[
+				"retu",
+				"return_value"
+			],
+			[
+				"flow",
+				"flow_limit"
+			],
+			[
+				"items",
+				"items_available"
+			],
+			[
+				"histo",
+				"histogram_to_process"
+			],
+			[
+				"se",
+				"safelist_tester"
+			],
+			[
+				"word_",
+				"word_histogram"
+			],
+			[
+				"test",
+				"test_cmp"
+			],
+			[
+				"threa",
+				"threads_list"
+			],
+			[
+				"list",
+				"listogram"
+			],
+			[
+				"test_",
+				"test_cmp"
+			],
+			[
+				"exam",
+				"example_input_string_list2"
+			],
+			[
+				"dic",
+				"dict_lock"
+			],
+			[
+				"dict",
+				"dictionary"
+			],
+			[
+				"other",
+				"other_histogram"
+			],
+			[
+				"oth",
+				"other_histogram"
+			],
+			[
+				"inp",
+				"input_contents"
+			],
+			[
+				"line",
+				"line_or_word"
+			],
+			[
+				"lin",
+				"line_or_word"
+			],
+			[
+				"sort",
+				"sorted_word_freq_list"
+			],
+			[
+				"fre",
+				"freq_pair"
+			],
+			[
+				"lol",
+				"lol_count"
+			],
+			[
+				"hors",
+				"horses_count"
+			],
+			[
+				"hey",
+				"hey_count"
+			],
+			[
+				"exa",
+				"example_input_string"
+			],
+			[
+				"input",
+				"input_file"
+			],
+			[
+				"tests",
+				"tests_passed"
+			],
+			[
+				"inc",
+				"increase_count"
+			],
+			[
+				"tes",
+				"tests_passed"
+			],
+			[
+				"imag",
+				"image_to_transform"
+			],
+			[
+				"rows",
+				"rows_to_use"
+			],
+			[
+				"function",
+				"function_to_use"
+			],
+			[
+				"gray",
+				"grayscale"
+			],
+			[
+				"pixel",
+				"pixel_tuple"
+			],
+			[
+				"image",
+				"image_to_transform"
+			],
+			[
+				"row",
+				"rows_to_use"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"heigh",
+				"height_per_block"
+			],
+			[
+				"min",
+				"min_col"
+			],
+			[
+				"max",
+				"max_row"
+			],
+			[
+				"ro",
+				"rows_to_use"
+			],
+			[
+				"col",
+				"columns_to_use"
+			],
+			[
+				"colu",
+				"columns_to_use"
+			],
+			[
+				"func",
+				"function_to_use"
+			],
+			[
+				"trans",
+				"transform_functions"
+			],
+			[
+				"tran",
+				"transformation"
+			],
+			[
+				"pix",
+				"pix_map"
+			],
+			[
+				"ima",
+				"image_to_transform"
+			],
+			[
+				"columns",
+				"columns"
+			],
+			[
+				"ind",
+				"index_in_1"
+			],
+			[
+				"index",
+				"index_in_2"
+			],
+			[
+				"li",
+				"list1"
+			],
+			[
+				"lis",
+				"list2"
+			],
+			[
+				"inde",
+				"index_in_1"
+			],
+			[
+				"merg",
+				"merged_list"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"true",
+				"true_height"
+			],
+			[
+				"backg",
+				"background-repeat"
+			],
+			[
+				"inne",
+				"innerHeight"
+			],
+			[
+				"tv",
+				"tv_width"
+			],
+			[
+				"num_",
+				"num_normals"
+			],
+			[
+				"populate_k",
+				"populate_k_neighborhood_means"
+			],
+			[
+				"normal",
+				"normalize_k_neighborhood_means"
+			],
+			[
+				"k_neigh",
+				"k_neigh_means_std"
+			],
+			[
+				"k_neigh_means",
+				"k_neigh_means_mean"
+			],
+			[
+				"k_n",
+				"k_neighborhood_means"
+			],
+			[
+				"temp_",
+				"temp_instance"
+			],
+			[
+				"orig",
+				"orig_index"
+			],
+			[
+				"insta",
+				"instance_list"
+			],
+			[
+				"dis",
+				"distance_class_pairs"
+			],
+			[
+				"tmep_insa",
+				"temp_instance_index"
+			],
+			[
+				"full",
+				"full_training_data"
+			],
+			[
+				"uncer",
+				"uncertainty_avgs"
+			],
+			[
+				"labeled",
+				"labeled_so_far"
+			],
+			[
+				"lab",
+				"labeled_per_trial"
+			],
+			[
+				"labele",
+				"labeled_per_trial"
+			],
+			[
+				"label",
+				"labeled_so_far"
+			],
+			[
+				"num",
+				"num_classes"
+			],
+			[
+				"unc",
+				"uncertainty_avgs"
+			],
+			[
+				"random",
+				"random_list_tuple"
+			],
+			[
+				"un",
+				"uncertainty_list_tuple"
+			],
+			[
+				"the",
+				"the_file"
+			],
+			[
+				"ran",
+				"random_file"
+			],
+			[
+				"ra",
+				"randint"
+			],
+			[
+				"gener",
+				"generate_val_set"
+			],
+			[
+				"new",
+				"new_accuracy"
+			],
+			[
+				"out",
+				"output_uncertainty"
+			],
+			[
+				"sor",
+				"sorted_tally_list"
+			],
+			[
+				"indic",
+				"indicies_to_move"
+			],
+			[
+				"tup",
+				"tuple_to_move"
+			],
+			[
+				"check",
+				"check_accuracy"
+			],
+			[
+				"valid",
+				"validation_indicies"
+			],
+			[
+				"temp_in",
+				"temp_instance"
+			],
+			[
+				"wei",
+				"weighted_votes"
+			],
+			[
+				"unl",
+				"unlabeled_instance_index"
+			],
+			[
+				"fea",
+				"features"
+			],
+			[
+				"instance",
+				"instance_count"
+			],
+			[
+				"ins",
+				"instance_count-1"
+			],
+			[
+				"labe",
+				"labeled_indicies"
+			],
+			[
+				"choose",
+				"choose_per_class"
+			],
+			[
+				"choo",
+				"choose_per_class"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 3743,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/comp20-sjacobson/redline/redlinestyle.css",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/10-8 ps04/ps04.erl",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/10-8 ps04/db.erl",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/10-8 ps04/README",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/comp20-sjacobson/karaoke/style.css",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/comp20-sjacobson/karaoke/index.html",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/10-6 puzzle7/puzzles7.text",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/word_histogram.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/9-25portfolio/ScottyMJacobson.github.io/resume.html",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/9-25portfolio/ScottyMJacobson.github.io/github_style.css",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/9-25portfolio/ScottyMJacobson.github.io/README.md",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/9-25portfolio/ScottyMJacobson.github.io/bio.html",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP20 WebDev/9-25portfolio/ScottyMJacobson.github.io/index.html",
+		"/Users/scottyjacobson/Downloads/Screenshots/Screen Shot 2014-09-07 at 6.57.11 PM.jpg",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/3_collection1.txt",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/1_collection1.txt",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/collection1.txt",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/2_collection1.txt",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-21 puzzle5/puzzles5.text",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/sample_words.txt",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-17 ps02/transform_image.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/word_frequency_testing.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-24 ps03/word_frequency.py",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/63821d4a-9b34-403d-9a59-11b79353d1bb/h/sjacob01/Desktop/comp50/9-17 ps02/README",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-15 puzzle3/puzzles03.txt",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/63821d4a-9b34-403d-9a59-11b79353d1bb/h/sjacob01/Desktop/comp50/9-10 ps02/puzzles02.text",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/63821d4a-9b34-403d-9a59-11b79353d1bb/h/sjacob01/Desktop/comp50/README",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-8 ps01/list2.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Senior 1/COMP50 Concurrant/9-8 ps01/list1.py",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/24f9bdca-793f-4344-9228-fef210e8e329/episodepk/index.html",
+		"/Users/scottyjacobson/Dropbox/Public/scbuttoncontrolholdon.js",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/24f9bdca-793f-4344-9228-fef210e8e329/episodepk/css/jpreloader3.css",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/24f9bdca-793f-4344-9228-fef210e8e329/holdon/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/96318a98-c56f-45fc-9068-5db44329bf7d/episodeholdon.co.nf/css/style3.css",
+		"/Users/scottyjacobson/Dropbox/Public/dustincrementalprototype.js",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/d8846f8c-7874-449b-9938-a5ea8971bd3a/episodedust.co.nf/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/d8846f8c-7874-449b-9938-a5ea8971bd3a/episodedust.co.nf/css/style3.css",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 2/COMP 135/hw/4-9activelearning/kNN_AL.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 2/COMP 135/hw/3-12clustering/kmeans_random.py",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/a5cd8522-b16e-491a-91bb-6ee6f181c074/episodepk/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/a5cd8522-b16e-491a-91bb-6ee6f181c074/dust/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/a5cd8522-b16e-491a-91bb-6ee6f181c074/index.html",
+		"/Users/scottyjacobson/Downloads/errorbar_demo.py",
+		"/Users/scottyjacobson/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/scottyjacobson/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/96dcf0ac-4446-42d9-a154-d34f09e4b446/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/96dcf0ac-4446-42d9-a154-d34f09e4b446/404.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/96dcf0ac-4446-42d9-a154-d34f09e4b446/episodeofficial.com-redirect/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/77d5b5c0-67b6-47c7-aa75-fd99a067d6e4/episodedust.co.nf/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/96dcf0ac-4446-42d9-a154-d34f09e4b446/dust/index.html",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/96dcf0ac-4446-42d9-a154-d34f09e4b446/downloads/download.php",
+		"/Users/scottyjacobson/Dropbox/Public/dustincremental.js",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/47232100-a6cc-461f-bae5-e7d0b70e2ff1/js/dustpreview.js",
+		"/private/var/folders/mh/pcpkzw3d2v71jcrnt8d757540000gn/T/56de2392-504f-46b3-850c-29a028bf97d2/episodedust.co.nf/index.htm",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 2/Job/SE_Test/SW_HTML_Test.html",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 2/COMP 135/hw/3-12clustering/kmeans_custom.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 2/COMP 135/hw/3-12clustering/miniguy.arff",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 2/COMP 135/hw/2-27crossvalidation/kNN.py",
+		"/Users/scottyjacobson/Dropbox/The Individual Folders/Scott/Junior 1/COMP 105/HWs/10-18 scheme i/solutions.scm"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"lyricsLines \\+= ",
+			"lyricsLines += ",
+			"semaphore",
+			"SafeList",
+			"nonetype",
+			"increase_count",
+			"tests_passed",
+			"lock",
+			" <",
+			"columns_to_use",
+			"rows_to_use",
+			"\\t",
+			"download",
+			"URL",
+			"hidden",
+			"iframe",
+			"bg-gif",
+			"resizeshit",
+			"gif",
+			"write",
+			"num_attributes",
+			"random",
+			"random\\.seed",
+			"random\\.",
+			"random.",
+			"random",
+			"try",
+			"populate_stat",
+			"populate_states",
+			"normalize",
+			"norm_attr",
+			"print_k_n",
+			"k_neighborhood_means",
+			"neighborhood_mean",
+			"k_mean_dist",
+			"distance_index_pairs",
+			"distance_index",
+			"populate_distances",
+			"populate",
+			"sort",
+			"ceil",
+			"std",
+			"random_",
+			"random",
+			"return",
+			"indicies",
+			"randint",
+			"random",
+			"uncertainty_file",
+			"write",
+			"print>>",
+			"write",
+			"\"\\n\"",
+			"uncertainty_file",
+			"run_uncer",
+			"weighted_votes",
+			"votes",
+			"populate_d",
+			"instance_count",
+			"feature_count",
+			"print class",
+			"class_list",
+			"orig_class",
+			"instance_list",
+			"randrange",
+			"filter",
+			"range",
+			"random",
+			"lambda x",
+			"dataInstance",
+			"in range",
+			"print",
+			"range",
+			"in range",
+			"list",
+			"DataSet",
+			"\\t",
+			"tab",
+			"name_of_file",
+			"random",
+			"training_data",
+			"set_k_nearest",
+			"VoteTally",
+			"distance",
+			"select_by_",
+			"isPlaying",
+			"blink",
+			"isPlaying",
+			"css",
+			"ready",
+			"volume",
+			"pauseThis",
+			"playThis",
+			"toggle",
+			"togglef",
+			"click",
+			"grundOnLoad",
+			"trigger",
+			"skip(",
+			"widget",
+			"playlist",
+			"false",
+			"playThis",
+			"button",
+			"bg",
+			"set_features",
+			"Cluster",
+			"sum_square",
+			"custom_",
+			"print",
+			"SSE_instance",
+			"mean",
+			"num_changes",
+			"populatin",
+			"print_attr",
+			"centroid",
+			"centroid is",
+			"get_dist",
+			"print_attr",
+			"curr",
+			"sort",
+			"find_clust",
+			"map",
+			"print",
+			"print_",
+			"num_changes",
+			"populatin",
+			"populate_distances"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			"count_lock",
+			"columns",
+			"rows",
+			"    "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3536,
+								3536
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "Redline.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
