@@ -10,6 +10,10 @@
     </script>
     <script type="text/javascript">
       
+    if(typeof console === "undefined") {
+        console = { log: function() { } };
+    }
+
     var map, // map made global within this scope to allow other functions
             // to access it
     redlineURI = "http://developer.mbta.com/lib/rthr/red.json"; 
@@ -84,8 +88,6 @@
         }
 
         function tripListUpdated() {
-            console.log("Updated Trips!");
-            console.log(tripList);
             timeFetched = tripList.TripList.CurrentTime;
             allTrips = tripList.TripList.Trips;
             updateMarkers();
