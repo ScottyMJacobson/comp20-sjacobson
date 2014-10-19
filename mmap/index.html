@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Red Line Lab</title>
-    <link rel="stylesheet" href="redlinestyle.css" type="text/css" />
+    <title>Maurauder's Map</title>
+    <link rel="stylesheet" href="mmapstyle.css" type="text/css" />
 
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js">
@@ -27,12 +27,57 @@
         var currentPosition;
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
-        getLocation();
         mapUpdateCycle(mMapURI, currentPosition);
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    function mapUpdateCycle (API_URL) {
+        var xhr, locationList, timeFetched, postText, currentPosition;
+        getLocation();
+        postText = "login=TerryBoot&lat=" + currentPosition.coords.latitude + 
+                                    "&lng=" + currentPosition.coords.longitude;
+        fetchJSON(API_URL);
+        function fetchJSON(API_URL) {
+            xhr = new XMLHttpRequest();
+            xhr.open("POST", API_URL, true);
+            xhr.onreadystatechange = readyStateHandler;
+            xhr.send(postText);
+        }
+
+        function readyStateHandler() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                locationList = JSON.parse(xhr.responseText);
+                locationListUpdated();
+            }
+            else if (xhr.readyState == 4) {
+                console.log("ERROR: xhr returned status "+ xhr.status);
+            }
+        }
+
+        function locationListUpdated() {
+            updateMarkers();
+        }
+        function updateMarkers() {
+            for (tripIndex in allTrips) {
+                var tempTrip = allTrips[tripIndex],
+                tempTripID = tempTrip.TripID;
+                if (tempTrip.Position) {
+                    temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
+                                                        tempTrip.Position.Long);
+                    var tempMarker = new google.maps.Marker({
+                        position: temp_LatLong,
+                        map: map,
+                        title: "Trip " + tempTripID
+                    })
+                }
+            }
+        }
 
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(handleGeolocation, handleError);
+                navigator.geolocation.getCurrentPosition(handleGeolocation, handleLocationError);
             }
             else {
                 alert("Geolocation is not supported by this browser.");
@@ -52,7 +97,7 @@
         }
 
 
-        function handleError(error) {
+        function handleLocationError(error) {
             switch(error.code) {
                 case error.PERMISSION_DENIED:
                     console.log("User denied the request for Geolocation.");
@@ -69,52 +114,6 @@
             }
         }
 
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-    function mapUpdateCycle (API_URL, currentPosition) {
-        var xhr, tripList, allTrips, timeFetched, postText;
-        postText = "login=MY_USERNAME&lat=" + currentPosition.coords.latitude + 
-                                    "&lng=" + currentPosition.coords.longitude;
-        fetchJSON(API_URL);
-        function fetchJSON(API_URL) {
-            xhr = new XMLHttpRequest();
-            xhr.open("POST", API_URL, true);
-            xhr.onreadystatechange = readyStateHandler;
-            xhr.send(postText);
-        }
-
-        function readyStateHandler() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                tripList = JSON.parse(xhr.responseText);
-                tripListUpdated();
-            }
-            else if (xhr.readyState == 4) {
-                console.log("ERROR: xhr returned status "+ xhr.status);
-            }
-        }
-
-        function tripListUpdated() {
-            timeFetched = tripList.TripList.CurrentTime;
-            allTrips = tripList.TripList.Trips;
-            updateMarkers();
-        }
-        function updateMarkers() {
-            for (tripIndex in allTrips) {
-                var tempTrip = allTrips[tripIndex],
-                tempTripID = tempTrip.TripID;
-                if (tempTrip.Position) {
-                    temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
-                                                        tempTrip.Position.Long);
-                    var tempMarker = new google.maps.Marker({
-                        position: temp_LatLong,
-                        map: map,
-                        title: "Trip " + tempTripID
-                    })
-                }
-            }
-        }
     }
 
 
