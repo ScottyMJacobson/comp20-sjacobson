@@ -16,7 +16,7 @@
 
     var map, // map made global within this scope to allow other functions
             // to access it
-    redlineURI = "http://developer.mbta.com/lib/rthr/red.json"; 
+    mMapURI = "http://chickenofthesea.herokuapp.com/sendLocation";
 
     function initialize() {
         var davisSquareCoords = new google.maps.LatLng(42.3964, -71.1223);
@@ -24,18 +24,24 @@
           center: davisSquareCoords,
           zoom: 12
         };
+        var currentPosition;
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
         getLocation();
-        tripsUpdateCycle(redlineURI);
+        mapUpdateCycle(mMapURI, currentPosition);
 
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(setMapCenter, handleError);
+                navigator.geolocation.getCurrentPosition(handleGeolocation, handleError);
             }
             else {
                 alert("Geolocation is not supported by this browser.");
             }
+        }
+
+        function handleGeolocation (position) {
+            setMapCenter(position);
+            currentPosition = position;
         }
 
         function setMapCenter(position) {
@@ -67,14 +73,16 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
-    function tripsUpdateCycle () {
-        var xhr, tripList, allTrips, timeFetched;
-        fetchJSON(redlineURI);
+    function mapUpdateCycle (API_URL, currentPosition) {
+        var xhr, tripList, allTrips, timeFetched, postText;
+        postText = "login=MY_USERNAME&lat=" + currentPosition.coords.latitude + 
+                                    "&lng=" + currentPosition.coords.longitude;
+        fetchJSON(API_URL);
         function fetchJSON(API_URL) {
             xhr = new XMLHttpRequest();
-            xhr.open("get", API_URL, true);
+            xhr.open("POST", API_URL, true);
             xhr.onreadystatechange = readyStateHandler;
-            xhr.send(null);
+            xhr.send(postText);
         }
 
         function readyStateHandler() {
