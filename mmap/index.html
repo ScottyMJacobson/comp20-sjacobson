@@ -33,26 +33,8 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 
     function mapUpdateCycle (API_URL) {
-        var xhr, locationList, timeFetched, postText;
+        var xhr, locationList, timeFetched, postText, allCharacters;
         getLocationAndSendPOST();
-        }
-        
-        function handleLocationError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    console.log("User denied the request for Geolocation.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    console.log("Location information is unavailable.");
-                    break;
-                case error.TIMEOUT:
-                    console.log("The request to get user location timed out.");
-                    break;
-                case error.UNKNOWN_ERROR:
-                    console.log("An unknown error occurred.");
-                    break;
-            }
-        }
 
         function getLocationAndSendPOST() {
             if (navigator.geolocation) {
@@ -75,41 +57,35 @@
             function fetchJSON(API_URL) {
                 xhr = new XMLHttpRequest();
                 xhr.open("POST", API_URL, true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = readyStateHandler;
                 xhr.send(postText);
             }
 
             function readyStateHandler() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
                     locationList = JSON.parse(xhr.responseText);
                     locationListUpdated();
                 }
                 else if (xhr.readyState == 4) {
                     console.log("ERROR: xhr returned status "+ xhr.status);
                 }
-        }
+            }
 
-        function locationListUpdated() {
-            updateMarkers();
-        }
+            function locationListUpdated() {
+                updateMarkers();
+            }
 
-        function updateMarkers() {
-            for (tripIndex in allTrips) {
-                var tempTrip = allTrips[tripIndex],
-                tempTripID = tempTrip.TripID;
-                if (tempTrip.Position) {
-                    temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
-                                                        tempTrip.Position.Long);
-                    var tempMarker = new google.maps.Marker({
-                        position: temp_LatLong,
-                        map: map,
-                        title: "Trip " + tempTripID
-                    })
+            function updateMarkers() {
+                for (tempCharacterIndex in locationList.characters) {
+                    console.log(locationList.characters[tempCharacterIndex]);
+                }
+                for (tempStudentIndex in locationList.students) {
+                    console.log(locationList.students[tempStudentIndex]);
                 }
             }
         }
-
-
 
         function setMapCenter(position) {
             if (map) {
@@ -118,11 +94,27 @@
             }
         }
 
+        function handleLocationError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                console.log("User denied the request for Geolocation.");
+                break;
+                case error.POSITION_UNAVAILABLE:
+                console.log("Location information is unavailable.");
+                break;
+                case error.TIMEOUT:
+                console.log("The request to get user location timed out.");
+                break;
+                case error.UNKNOWN_ERROR:
+                console.log("An unknown error occurred.");
+                break;
+            }
+        }
+
 
 
 
     }
-
 
     
 
