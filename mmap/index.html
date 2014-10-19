@@ -47,7 +47,19 @@
 
         function handleGeolocation (position) {
             setMapCenter(position);
+            setMeIcon(position);
             sendMapRequest(position);
+        }
+
+        function setMeIcon(position) {
+            var meLocation = new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude),
+            meMarker = new google.maps.Marker({
+                        position: meLocation,
+                        map: map,
+                        title: "You Are Hear!",
+                        icon: "icons/youarehear.png"
+                    })
         }
 
         function sendMapRequest(currentPosition) {
@@ -78,8 +90,20 @@
             }
 
             function updateMarkers() {
+                var tempCharacter, tempStudent;
+                console.log("Found " + locationList.characters.length);
                 for (tempCharacterIndex in locationList.characters) {
-                    console.log(locationList.characters[tempCharacterIndex]);
+                    tempCharacter = locationList.characters[tempCharacterIndex];
+                    temp_LatLong = new google.maps.LatLng (tempCharacter.loc.latitude,
+                                                        tempCharacter.loc.longitude);
+
+                    var tempMarker = new google.maps.Marker({
+                        position: temp_LatLong,
+                        map: map,
+                        title: tempCharacter.name,
+                        icon: "icons/"+tempCharacter.name+".png"
+                    });
+
                 }
                 for (tempStudentIndex in locationList.students) {
                     console.log(locationList.students[tempStudentIndex]);
