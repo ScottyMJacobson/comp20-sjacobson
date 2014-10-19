@@ -24,41 +24,58 @@
           center: davisSquareCoords,
           zoom: 12
         };
-        var currentPosition;
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
-        mapUpdateCycle(mMapURI, currentPosition);
+        mapUpdateCycle(mMapURI);
 
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
     function mapUpdateCycle (API_URL) {
-        var xhr, locationList, timeFetched, postText, currentPosition;
-        getLocation();
-        postText = "login=TerryBoot&lat=" + currentPosition.coords.latitude + 
-                                    "&lng=" + currentPosition.coords.longitude;
-        fetchJSON(API_URL);
-        function fetchJSON(API_URL) {
-            xhr = new XMLHttpRequest();
-            xhr.open("POST", API_URL, true);
-            xhr.onreadystatechange = readyStateHandler;
-            xhr.send(postText);
+        var xhr, locationList, timeFetched, postText;
+        getLocationAndSendPOST();
+        }
+        
+        function getLocationAndSendPOST() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(handleGeolocation, handleLocationError);
+            }
+            else {
+                alert("Geolocation is not supported by this browser.");
+            }
         }
 
-        function readyStateHandler() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                locationList = JSON.parse(xhr.responseText);
-                locationListUpdated();
+        function handleGeolocation (position) {
+            setMapCenter(position);
+            sendMapRequest(position);
+        }
+        
+        function sendMapRequest(currentPosition) {
+            postText = "login=TerryBoot&lat=" + currentPosition.coords.latitude + 
+            "&lng=" + currentPosition.coords.longitude;
+            fetchJSON(API_URL);
+            function fetchJSON(API_URL) {
+                xhr = new XMLHttpRequest();
+                xhr.open("POST", API_URL, true);
+                xhr.onreadystatechange = readyStateHandler;
+                xhr.send(postText);
             }
-            else if (xhr.readyState == 4) {
-                console.log("ERROR: xhr returned status "+ xhr.status);
-            }
+
+            function readyStateHandler() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    locationList = JSON.parse(xhr.responseText);
+                    locationListUpdated();
+                }
+                else if (xhr.readyState == 4) {
+                    console.log("ERROR: xhr returned status "+ xhr.status);
+                }
         }
 
         function locationListUpdated() {
             updateMarkers();
         }
+
         function updateMarkers() {
             for (tripIndex in allTrips) {
                 var tempTrip = allTrips[tripIndex],
@@ -75,19 +92,7 @@
             }
         }
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(handleGeolocation, handleLocationError);
-            }
-            else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
 
-        function handleGeolocation (position) {
-            setMapCenter(position);
-            currentPosition = position;
-        }
 
         function setMapCenter(position) {
             if (map) {
