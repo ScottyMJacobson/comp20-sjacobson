@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Red Line Lab</title>
+    <link rel="stylesheet" href="redlinestyle.css" type="text/css" />
+
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js">
+    </script>
+    <script type="text/javascript">
+      
+    if(typeof console === "undefined") {
+        console = { log: function() { } };
+    }
+
+    var map, // map made global within this scope to allow other functions
+            // to access it
+    redlineURI = "http://developer.mbta.com/lib/rthr/red.json"; 
+
+    function initialize() {
+        var davisSquareCoords = new google.maps.LatLng(42.3964, -71.1223);
+        var mapOptions = {
+          center: davisSquareCoords,
+          zoom: 12
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        getLocation();
+        tripsUpdateCycle(redlineURI);
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(setMapCenter, handleError);
+            }
+            else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function setMapCenter(position) {
+            if (map) {
+                map.setCenter(new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude));
+            }
+        }
+
+
+        function handleError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.log("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    console.log("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    console.log("An unknown error occurred.");
+                    break;
+            }
+        }
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    function tripsUpdateCycle () {
+        var xhr, tripList, allTrips, timeFetched;
+        fetchJSON(redlineURI);
+        function fetchJSON(API_URL) {
+            xhr = new XMLHttpRequest();
+            xhr.open("get", API_URL, true);
+            xhr.onreadystatechange = readyStateHandler;
+            xhr.send(null);
+        }
+
+        function readyStateHandler() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                tripList = JSON.parse(xhr.responseText);
+                tripListUpdated();
+            }
+            else if (xhr.readyState == 4) {
+                console.log("ERROR: xhr returned status "+ xhr.status);
+            }
+        }
+
+        function tripListUpdated() {
+            timeFetched = tripList.TripList.CurrentTime;
+            allTrips = tripList.TripList.Trips;
+            updateMarkers();
+        }
+        function updateMarkers() {
+            for (tripIndex in allTrips) {
+                var tempTrip = allTrips[tripIndex],
+                tempTripID = tempTrip.TripID;
+                if (tempTrip.Position) {
+                    temp_LatLong = new google.maps.LatLng (tempTrip.Position.Lat,
+                                                        tempTrip.Position.Long);
+                    var tempMarker = new google.maps.Marker({
+                        position: temp_LatLong,
+                        map: map,
+                        title: "Trip " + tempTripID
+                    })
+                }
+            }
+        }
+    }
+
+
+    
+
+    </script>
+</head>
+<body>
+
+<div id="map-canvas">
+
+</div>
+
+</body>
+</html>
