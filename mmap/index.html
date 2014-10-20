@@ -105,31 +105,34 @@
                     });
 
                 }
+                var globalInfoWindow = new google.maps.InfoWindow({
+                        content: ""
+                    });
+                var markerList = [];
                 for (tempStudentIndex in locationList.students) {
                     tempStudent = locationList.students[tempStudentIndex];
                     temp_LatLong = new google.maps.LatLng (tempStudent.lat,
                                                         tempStudent.lng);
 
-                    var tempMarker = new google.maps.Marker({
+                    tempMarker = new google.maps.Marker({
                         position: temp_LatLong,
                         map: map,
                         title: tempStudent['login'],
+                        student: tempStudent
                     }),
-                    tempContentString = '<div id="student-info">' + 
-                    '<p>' +
-                    'Login: ' + tempStudent['login'] + '<br>' +
-                    'Latitude: ' + tempStudent['lat'] + '<br>' +
-                    'Longitude: ' + tempStudent['lng'] + '<br>' +
-                    'TimeStamp: ' + tempStudent['created_at'] + '<br>' +
-                    '</p>' +
-                    '</div>',
-                    tempInfoWindow = new google.maps.InfoWindow({
-                        content: tempContentString
-                    });
-                    google.maps.event.addListener(tempMarker, 'click', function() {
-                        tempInfoWindow.open(map,tempMarker);
-                      });
+                    markerList.push(tempMarker);
                 }
+                console.log(markerList);
+                var markerNumber, tempMarker;
+                for (markerNumber in markerList) {
+                    tempMarker = markerList[markerNumber];
+                    google.maps.event.addListener(tempMarker, 'click', (function(tempMarker, markerNumber) {
+                            return function() {
+                              globalInfoWindow.setContent(markerNumber);
+                              globalInfoWindow.open(map, tempMarker);
+                            }
+                          })(tempMarker, markerNumber));
+                } 
             }
         }
 
