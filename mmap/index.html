@@ -16,13 +16,14 @@
 
     var map, // map made global within this scope to allow other functions
             // to access it
-    mMapURI = "http://chickenofthesea.herokuapp.com/sendLocation";
+    mMapURI = "http://chickenofthesea.herokuapp.com/sendLocation",
+    myUserName = 'TerryBoot';
 
     function initialize() {
         var davisSquareCoords = new google.maps.LatLng(42.3964, -71.1223);
         var mapOptions = {
           center: davisSquareCoords,
-          zoom: 12
+          zoom: 15
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
@@ -61,11 +62,25 @@
                         map: map,
                         title: "You Are Hear!",
                         icon: "icons/youarehear.png"
-                    })
+                    });
+            var meContent = '<div id="student-info">' + 
+                    '<h3> This Is Me! </h3>' +
+                    '<p>' +
+                    'Login: ' + myUserName + '<br>' +
+                    'Latitude: ' + position.coords.latitude + '<br>' +
+                    'Longitude: ' + position.coords.longitude + '<br>' +
+                    '</p>' +
+                    '</div>';
+            google.maps.event.addListener(meMarker, 'click', (function(meMarker) {
+                            return function() {
+                                globalInfoWindow.setContent(meContent);
+                                globalInfoWindow.open(map, meMarker);
+                            }
+                          })(meMarker));
         }
 
         function sendMapRequest(currentPosition) {
-            postText = "login=TerryBoot&lat=" + currentPosition.coords.latitude + 
+            postText = "login="+ myUserName +"&lat=" + currentPosition.coords.latitude + 
             "&lng=" + currentPosition.coords.longitude;
             fetchJSON(API_URL);
             function fetchJSON(API_URL) {
@@ -121,22 +136,14 @@
                         student: tempStudent
                     }),
                     studentMarkerList.push(tempMarker);
-                }
-                console.log(studentMarkerList);
-                var markerNumber, tempMarker;
-
-
-
-                for (markerNumber in studentMarkerList) {
-                    tempMarker = studentMarkerList[markerNumber];
-                    google.maps.event.addListener(tempMarker, 'click', (function(tempMarker, markerNumber) {
+                    google.maps.event.addListener(tempMarker, 'click', (function(tempMarker, tempStudentIndex) {
                             return function() {
-
-                                globalInfoWindow.setContent(generateInfoHTML(markerNumber));
+                                globalInfoWindow.setContent(generateInfoHTML(tempStudentIndex));
                                 globalInfoWindow.open(map, tempMarker);
                             }
-                          })(tempMarker, markerNumber));
-                }                 
+                          })(tempMarker, tempStudentIndex));
+                }
+                console.log(studentMarkerList);
 
                 function generateInfoHTML (markerNumber) {
                     var studentForInfo = locationList.students[markerNumber],
