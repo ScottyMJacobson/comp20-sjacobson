@@ -35,7 +35,9 @@
     function mapUpdateCycle (API_URL) {
         var xhr, locationList, timeFetched, postText, allCharacters;
         getLocationAndSendPOST();
-
+        var globalInfoWindow = new google.maps.InfoWindow({
+                        content: ""
+                    });
         function getLocationAndSendPOST() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(handleGeolocation, handleLocationError);
@@ -47,11 +49,11 @@
 
         function handleGeolocation (position) {
             setMapCenter(position);
-            setMeIcon(position);
+            setMeMarker(position);
             sendMapRequest(position);
         }
 
-        function setMeIcon(position) {
+        function setMeMarker(position) {
             var meLocation = new google.maps.LatLng(position.coords.latitude,
                     position.coords.longitude),
             meMarker = new google.maps.Marker({
@@ -105,10 +107,8 @@
                     });
 
                 }
-                var globalInfoWindow = new google.maps.InfoWindow({
-                        content: ""
-                    });
-                var markerList = [];
+
+                var studentMarkerList = [];
                 for (tempStudentIndex in locationList.students) {
                     tempStudent = locationList.students[tempStudentIndex];
                     temp_LatLong = new google.maps.LatLng (tempStudent.lat,
@@ -120,19 +120,37 @@
                         title: tempStudent['login'],
                         student: tempStudent
                     }),
-                    markerList.push(tempMarker);
+                    studentMarkerList.push(tempMarker);
                 }
-                console.log(markerList);
+                console.log(studentMarkerList);
                 var markerNumber, tempMarker;
-                for (markerNumber in markerList) {
-                    tempMarker = markerList[markerNumber];
+
+
+
+                for (markerNumber in studentMarkerList) {
+                    tempMarker = studentMarkerList[markerNumber];
                     google.maps.event.addListener(tempMarker, 'click', (function(tempMarker, markerNumber) {
                             return function() {
-                              globalInfoWindow.setContent(markerNumber);
-                              globalInfoWindow.open(map, tempMarker);
+
+                                globalInfoWindow.setContent(generateInfoHTML(markerNumber));
+                                globalInfoWindow.open(map, tempMarker);
                             }
                           })(tempMarker, markerNumber));
-                } 
+                }                 
+
+                function generateInfoHTML (markerNumber) {
+                    var studentForInfo = locationList.students[markerNumber],
+                    tempContentString = '<div id="student-info">' + 
+                    '<p>' +
+                    'Login: ' + studentForInfo['login'] + '<br>' +
+                    'Latitude: ' + studentForInfo['lat'] + '<br>' +
+                    'Longitude: ' + studentForInfo['lng'] + '<br>' +
+                    'TimeStamp: ' + studentForInfo['created_at'] + '<br>' +
+                    '</p>' +
+                    '</div>';
+                    return tempContentString;
+                }
+
             }
         }
 
