@@ -108,7 +108,6 @@
 
             function updateMarkers() {
                 var tempCharacter, tempStudent;
-                console.log("Found " + locationList.characters.length);
                 for (tempCharacterIndex in locationList.characters) {
                     tempCharacter = locationList.characters[tempCharacterIndex];
                     temp_LatLong = new google.maps.LatLng (tempCharacter.loc.latitude,
@@ -121,9 +120,15 @@
                         icon: "icons/"+tempCharacter['name']+".png"
                     });
 
+                    google.maps.event.addListener(tempMarker, 'click', (function(tempMarker, tempCharacterIndex) {
+                            return function() {
+                                globalInfoWindow.setContent(generateCharacterInfoHTML(tempCharacterIndex));
+                                globalInfoWindow.open(map, tempMarker);
+                            }
+                          })(tempMarker, tempCharacterIndex));
+
                 }
 
-                var studentMarkerList = [];
                 for (tempStudentIndex in locationList.students) {
                     tempStudent = locationList.students[tempStudentIndex];
                     temp_LatLong = new google.maps.LatLng (tempStudent.lat,
@@ -135,19 +140,17 @@
                         title: tempStudent['login'],
                         student: tempStudent
                     }),
-                    studentMarkerList.push(tempMarker);
                     google.maps.event.addListener(tempMarker, 'click', (function(tempMarker, tempStudentIndex) {
                             return function() {
-                                globalInfoWindow.setContent(generateInfoHTML(tempStudentIndex));
+                                globalInfoWindow.setContent(generateStudentInfoHTML(tempStudentIndex));
                                 globalInfoWindow.open(map, tempMarker);
                             }
                           })(tempMarker, tempStudentIndex));
                 }
-                console.log(studentMarkerList);
 
-                function generateInfoHTML (markerNumber) {
+                function generateStudentInfoHTML (markerNumber) {
                     var studentForInfo = locationList.students[markerNumber],
-                    tempContentString = '<div id="student-info">' + 
+                    tempContentString = '<div class="student info">' + 
                     '<p>' +
                     'Login: ' + studentForInfo['login'] + '<br>' +
                     'Latitude: ' + studentForInfo['lat'] + '<br>' +
@@ -157,6 +160,20 @@
                     '</div>';
                     return tempContentString;
                 }
+
+                function generateCharacterInfoHTML (characterNumber) {
+                    var characterForInfo = locationList.characters[characterNumber],
+                    tempContentString = '<div class="character info">' + 
+                    '<p>' +
+                    'Name: ' + characterForInfo['name'] + '<br>' +
+                    'Latitude: ' + characterForInfo['loc']['latitude'] + '<br>' +
+                    'Longitude: ' + characterForInfo['loc']['longitude'] + '<br>' +
+                    'Note: ' + characterForInfo['loc']['note'] + '<br>' +
+                    '</p>' +
+                    '</div>';
+                    return tempContentString;
+                }
+
 
             }
         }
