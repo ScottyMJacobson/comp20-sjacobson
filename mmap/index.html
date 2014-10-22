@@ -50,7 +50,6 @@
 
         function handleGeolocation (position) {
             setMapCenter(position);
-            setMeMarker(position);
             sendMapRequest(position);
         }
 
@@ -107,6 +106,8 @@
             }
 
             function updateMarkers() {
+                setMeMarker(currentPosition);
+                nameDistancePairs={};
                 var tempCharacter, tempStudent;
                 for (tempCharacterIndex in locationList.characters) {
                     tempCharacter = locationList.characters[tempCharacterIndex];
@@ -127,7 +128,15 @@
                             }
                           })(tempMarker, tempCharacterIndex));
 
+                    var tempDistanceFromMe = haversineDistance (currentPosition.coords.latitude,
+                                                            currentPosition.coords.longitude,
+                                                             tempCharacter['loc']['latitude'],
+                                                             tempCharacter['loc']['longitude']);
+
+                    nameDistancePairs[tempCharacter['name']] = tempDistanceFromMe;
+                    
                 }
+                console.log(nameDistancePairs);
 
                 for (tempStudentIndex in locationList.students) {
                     tempStudent = locationList.students[tempStudentIndex];
@@ -174,6 +183,23 @@
                     return tempContentString;
                 }
 
+                function haversineDistance (lat1, long1, lat2, long2) {
+                    var R = 3961, // miles  
+                    deltaLat = lat2 - lat1,
+                    radLat1 = (Math.PI * lat1) / 180,
+                    radLat2 = (Math.PI * lat2) / 180,
+                    radDeltaLat = (Math.PI * deltaLat) / 180,
+                    deltaLong = long2 - long1,
+                    radDeltaLong = (Math.PI * deltaLong) / 180,
+                    radLong1 = (Math.PI * long1) / 180,
+                    radLong2 = (Math.PI * long2) / 180,
+                    a = Math.sin(radDeltaLat/2) * Math.sin(radDeltaLat/2) +
+                        Math.cos(radLat1) * Math.cos(radLat2) *
+                        Math.sin(radDeltaLong/2) * Math.sin(radDeltaLong/2),
+                    c = 2 * Math.atan(Math.sqrt(a), Math.sqrt(1-a)),
+                    distance = R * c;
+                    return distance
+                }
 
             }
         }
@@ -201,13 +227,9 @@
                 break;
             }
         }
-
-
-
-
     }
 
-    
+
 
     </script>
 </head>
