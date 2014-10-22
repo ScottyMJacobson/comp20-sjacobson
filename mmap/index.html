@@ -17,7 +17,8 @@
     var map, // map made global within this scope to allow other functions
             // to access it
     mMapURI = "http://chickenofthesea.herokuapp.com/sendLocation",
-    myUserName = 'TerryBoot';
+    myUserName = 'TerryBoot',
+    positionFound = false;
 
     function initialize() {
         var davisSquareCoords = new google.maps.LatLng(42.3964, -71.1223);
@@ -31,7 +32,7 @@
 
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize); 
 
     function mapUpdateCycle (API_URL) {
         var xhr, locationList, timeFetched, postText, allCharacters;
@@ -40,7 +41,7 @@
                         content: ""
                     });
         function getLocationAndSendPOST() {
-            if (navigator.geolocation && !navigator.geolocation.position) {
+            if (navigator.geolocation && !positionFound) {
                 navigator.geolocation.getCurrentPosition(handleGeolocation, handleLocationError);
             }
             else {
@@ -49,6 +50,7 @@
         }
 
         function handleGeolocation (position) {
+            positionFound = true;
             setMapCenter(position);
             sendMapRequest(position);
         }
