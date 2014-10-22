@@ -79,12 +79,11 @@
 
             function readyStateHandler() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText);
                     locationList = JSON.parse(xhr.responseText);
                     locationListUpdated();
                 }
                 else if (xhr.readyState == 4) {
-                    console.log("ERROR: xhr returned status "+ xhr.status);
+                    alert("ERROR: xhr returned status "+ xhr.status + ". Unable to load map.");
                 }
             }
 
@@ -149,10 +148,10 @@
                     var studentForInfo = locationList.students[markerNumber],
                     tempContentString = '<div class="student info">' + 
                     '<p>' +
-                    'Login: ' + studentForInfo['login'] + '<br>' +
-                    'Latitude: ' + studentForInfo['lat'] + '<br>' +
-                    'Longitude: ' + studentForInfo['lng'] + '<br>' +
-                    'TimeStamp: ' + studentForInfo['created_at'] + '<br>' +
+                    '<h4>Login: </h4>' + studentForInfo['login'] + '<br>' +
+                    '<h4>Latitude: </h4>' + studentForInfo['lat'] + '<br>' +
+                    '<h4>Longitude: </h4>' + studentForInfo['lng'] + '<br>' +
+                    '<h4>TimeStamp: </h4>' + studentForInfo['created_at'] + '<br>' +
                     '</p>' +
                     '</div>';
                     return tempContentString;
@@ -162,10 +161,10 @@
                     var characterForInfo = locationList.characters[characterNumber],
                     tempContentString = '<div class="character info">' + 
                     '<p>' +
-                    'Name: ' + characterForInfo['name'] + '<br>' +
-                    'Latitude: ' + characterForInfo['loc']['latitude'] + '<br>' +
-                    'Longitude: ' + characterForInfo['loc']['longitude'] + '<br>' +
-                    'Note: ' + characterForInfo['loc']['note'] + '<br>' +
+                    '<h4>Name: </h4>' + characterForInfo['name'] + '<br>' +
+                    '<h4>Latitude: </h4>' + characterForInfo['loc']['latitude'] + '<br>' +
+                    '<h4>Longitude: </h4>' + characterForInfo['loc']['longitude'] + '<br>' +
+                    '<h4>Note: </h4>' + characterForInfo['loc']['note'] + '<br>' +
                     '</p>' +
                     '</div>';
                     return tempContentString;
@@ -190,20 +189,20 @@
                 }
 
                 function makeMeMarkerInfoWindow(meMarker, nameDistancePairs) {
-                    var meContent = '<div id="student-info">' + 
+                    var meContent = '<div class="me info">' + 
                             '<h3> This Is Me! </h3>' +
                             '<p>' +
-                            'Login: ' + myUserName + '<br>' +
-                            'Latitude: ' + meMarker.position.Lat + '<br>' +
-                            'Longitude: ' + meMarker.position.Long + '<br>' +
+                            '<h4>Login: </h4>' + myUserName + '<br>' +
+                            '<h4>Latitude: </h4>' + meMarker.position['k'] + '<br>' +
+                            '<h4>Longitude: </h4>' + meMarker.position['B'] + '<br>' +
                             '</p>' +
                             '</div>' +
                             '<div id="distances-table">' +
-                            '<h3> Distance to Character: </h3>' +
-                            '<table>';
+                            '<h3> Distance to Characters: </h3>' +
+                            '<table id="distances">';
                             for (characterKey in nameDistancePairs) {
                                 meContent += '<tr>';
-                                meContent += '<td>' + characterKey + ': </td>';
+                                meContent += '<td><h4>' + characterKey + ': </h4></td>';
                                 meContent += '<td>' + nameDistancePairs[characterKey].toFixed(2) + ' mi</td>';
                             } 
                             meContent += '</table>' +
@@ -239,18 +238,23 @@
         }
 
         function handleLocationError(error) {
+            var fakeDavisSquarePosition = {coords: {latitude:42.3964, longitude:-71.1223} }; 
             switch(error.code) {
                 case error.PERMISSION_DENIED:
-                console.log("User denied the request for Geolocation.");
+                alert("User denied the request for Geolocation. Using Davis Square as default location.");
+                handleGeolocation(fakeDavisSquarePosition);
                 break;
                 case error.POSITION_UNAVAILABLE:
-                console.log("Location information is unavailable.");
+                alert("Location information is unavailable. Using Davis Square as default location.");
+                handleGeolocation(fakeDavisSquarePosition);
                 break;
                 case error.TIMEOUT:
-                console.log("The request to get user location timed out.");
+                alert("The request to get user location timed out. Using Davis Square as default location.");
+                handleGeolocation(fakeDavisSquarePosition);
                 break;
                 case error.UNKNOWN_ERROR:
-                console.log("An unknown error occurred.");
+                alert("An unknown error occurred. Using Davis Square as default location.");
+                handleGeolocation(fakeDavisSquarePosition);
                 break;
             }
         }
