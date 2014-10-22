@@ -62,20 +62,7 @@
                         title: "You Are Hear!",
                         icon: "icons/youarehear.png"
                     });
-            var meContent = '<div id="student-info">' + 
-                    '<h3> This Is Me! </h3>' +
-                    '<p>' +
-                    'Login: ' + myUserName + '<br>' +
-                    'Latitude: ' + position.coords.latitude + '<br>' +
-                    'Longitude: ' + position.coords.longitude + '<br>' +
-                    '</p>' +
-                    '</div>';
-            google.maps.event.addListener(meMarker, 'click', (function(meMarker) {
-                            return function() {
-                                globalInfoWindow.setContent(meContent);
-                                globalInfoWindow.open(map, meMarker);
-                            }
-                          })(meMarker));
+            return meMarker;
         }
 
         function sendMapRequest(currentPosition) {
@@ -106,8 +93,8 @@
             }
 
             function updateMarkers() {
-                setMeMarker(currentPosition);
-                nameDistancePairs={};
+                var meMarker = setMeMarker(currentPosition);
+                var nameDistancePairs={};
                 var tempCharacter, tempStudent;
                 for (tempCharacterIndex in locationList.characters) {
                     tempCharacter = locationList.characters[tempCharacterIndex];
@@ -134,10 +121,11 @@
                                                              tempCharacter['loc']['longitude']);
 
                     nameDistancePairs[tempCharacter['name']] = tempDistanceFromMe;
-                    
+                    makePolylineBetweenMarkers (meMarker, tempMarker);
                 }
-                console.log(nameDistancePairs);
 
+                makeMeMarkerInfoWindow(meMarker, nameDistancePairs);
+                
                 for (tempStudentIndex in locationList.students) {
                     tempStudent = locationList.students[tempStudentIndex];
                     temp_LatLong = new google.maps.LatLng (tempStudent.lat,
@@ -198,10 +186,49 @@
                         Math.sin(radDeltaLong/2) * Math.sin(radDeltaLong/2),
                     c = 2 * Math.atan(Math.sqrt(a), Math.sqrt(1-a)),
                     distance = R * c;
-                    return distance
+                    return distance;
                 }
 
-            }
+                function makeMeMarkerInfoWindow(meMarker, nameDistancePairs) {
+                    var meContent = '<div id="student-info">' + 
+                            '<h3> This Is Me! </h3>' +
+                            '<p>' +
+                            'Login: ' + myUserName + '<br>' +
+                            'Latitude: ' + meMarker.position.Lat + '<br>' +
+                            'Longitude: ' + meMarker.position.Long + '<br>' +
+                            '</p>' +
+                            '</div>' +
+                            '<div id="distances-table">' +
+                            '<h3> Distance to Character: </h3>' +
+                            '<table>';
+                            for (characterKey in nameDistancePairs) {
+                                meContent += '<tr>';
+                                meContent += '<td>' + characterKey + ': </td>';
+                                meContent += '<td>' + nameDistancePairs[characterKey].toFixed(2) + ' mi</td>';
+                            } 
+                            meContent += '</table>' +
+                            '</div>' ;
+                    google.maps.event.addListener(meMarker, 'click', (function(meMarker) {
+                                    return function() {
+                                        globalInfoWindow.setContent(meContent);
+                                        globalInfoWindow.open(map, meMarker);
+                                    }
+                                  })(meMarker));
+
+                }
+
+            }                
+
+            function makePolylineBetweenMarkers (marker1, marker2) {
+                    var tempPolyline = new google.maps.Polyline({
+                        path: [marker1['position'],marker2['position']],
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                      });
+                    tempPolyline.setMap(map);
+                }
         }
 
         function setMapCenter(position) {
