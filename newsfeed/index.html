@@ -4,9 +4,20 @@
 
 <head>
     <title>My News Feed</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-      // Most of your work will be done here...
+
+        $(document).ready( function() { 
+            $('#msg').on('keyup', function(e) {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode == 13) {
+                    var previousContent = $('#news').html();
+                    $('#news').html(previousContent + "<br>" +  $('#msg').val());
+                    $('#msg').val("");
+                }
+            })
+        });
+
     </script>
 </head>
 
@@ -16,3 +27,4 @@
     <div id="news">News...</div>
 </body>
 </html>
+
