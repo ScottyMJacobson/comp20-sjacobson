@@ -8,17 +8,53 @@
     <script>
 
         $(document).ready( function() { 
+
+            var fullNewsfeed;
+            if (localStorage && localStorage.getItem('fullNewsfeed')) {
+                fullNewsfeed = JSON.parse(localStorage.getItem('fullNewsfeed'));
+                for (tempLogIndex in fullNewsfeed['logs']) {
+                    appendToNewsDiv(fullNewsfeed['logs'][tempLogIndex]);
+                }
+            }
+            else {
+                fullNewsfeed = {logs: []};
+            }
+
             $('#msg').on('keyup', function(e) {
                 var keyCode = e.keyCode || e.which;
                 if (keyCode == 13) {
-                    var previousContent = $('#news').html();
-                    $('#news').html(previousContent + "<br>" +  $('#msg').val());
-                    $('#msg').val("");
+                    var currentPost = addToNewsfeed ($('#msg').val(), Date.now());
+                    appendToNewsDiv (currentPost);
                 }
             })
+
+            function addToNewsfeed (postText, postDate) {
+                var currentPost =  {
+                    text: postText,
+                    date: postDate
+                };
+                fullNewsfeed['logs'].push(currentPost);
+                localStorage.setItem('fullNewsfeed', JSON.stringify(fullNewsfeed));
+                return currentPost;
+            }
+
+            function appendToNewsDiv (postObject) {
+                var previousContent = $('#news').html();
+                if (previousContent == "News...") {
+                        previousContent = "";
+                }
+                var timeStamp = '<span class="timestamp">' + postObject['date'] + '</span>',
+                currentPost = timeStamp + " - " + postObject['text'];
+                $('#news').html(previousContent + "<br>" + currentPost);
+                $('#msg').val("");
+            }
+
         });
 
     </script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="newsfeedstyle.css">
+
 </head>
 
 <body>
