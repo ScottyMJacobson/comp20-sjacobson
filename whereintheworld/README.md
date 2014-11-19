@@ -5,7 +5,7 @@ whereintheworld
 
 
 ###Implemented:
-I believe I have correctly implemented all endpoints.
+I believe I have correctly implemented all endpoints. WhereInTheWorld is deployed on heroku at [scottyjwhereintheworld.herokuapp.com](scottyjwhereintheworld.herokuapp.com).
 
 ###Collaborated:
 I did not collaborate with anyone for my project.
